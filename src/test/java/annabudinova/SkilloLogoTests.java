@@ -1,6 +1,6 @@
 package annabudinova;
 
-import object.*;
+import factory.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -31,12 +31,9 @@ public class SkilloLogoTests extends TestObject {
         WebDriver driver = getDriver();
         HomePage homePage = new HomePage(driver);
         homePage.navigateTo();
-
         Assert.assertTrue(homePage.isUrlLoaded(), "The HOME URL is not correct!");
         Header header = new Header(driver);
-
         Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
-
     }
 
     @Test(dataProvider = "loginUser")
