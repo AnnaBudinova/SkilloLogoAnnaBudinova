@@ -15,12 +15,11 @@ public class Header {
         this.driver = driver;
     }
 
-    public static String skilloLogo() {
+    public boolean skilloLogo() {
         WebElement skilloLogo = driver.findElement(By.id("homeIcon"));
-        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
-        wait.until(ExpectedConditions.visibilityOf(skilloLogo));
-        return skilloLogo.getText();
+        return skilloLogo.isDisplayed();
     }
+
     public void clickProfile() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement profileLink = wait.until(ExpectedConditions.elementToBeClickable(By.id("nav-link-profile")));

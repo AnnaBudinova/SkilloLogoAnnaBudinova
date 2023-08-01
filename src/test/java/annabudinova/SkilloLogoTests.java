@@ -34,7 +34,7 @@ public class SkilloLogoTests extends TestObject {
 
         Assert.assertTrue(homePage.isUrlLoaded(), "The HOME URL is not correct!");
         Header header = new Header(driver);
-        String skilloLogoLabel = Header.skilloLogo();
+        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
 
     @Test(dataProvider = "loginUser")
@@ -44,7 +44,7 @@ public class SkilloLogoTests extends TestObject {
         loginPage.navigateTo();
         loginPage.login(user, password);
         Header header = new Header(driver);
-        String skilloLogoLabel = Header.skilloLogo();
+        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
 
     @Test(dataProvider = "getUsers")
@@ -64,7 +64,7 @@ public class SkilloLogoTests extends TestObject {
         Assert.assertTrue(profilePage.isUrlLoaded(), "The Profile URL is not correct!");
         String actualUserName = profilePage.getUsername();
         Assert.assertEquals(actualUserName, name, "The username is incorrect!");
-        String skilloLogoLabel = Header.skilloLogo();
+        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
 
     @Test(dataProvider = "loginUser")
@@ -81,9 +81,8 @@ public class SkilloLogoTests extends TestObject {
         Assert.assertTrue(newPostPage.isUrlLoaded(), "The Profile URL is not correct!");
         String isTextDisplayed = newPostPage.isTextDisplayed();
         Assert.assertEquals(isTextDisplayed, "Post a picture to share with your awesome followers");
-        String skilloLogoLabel = Header.skilloLogo();
+        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
-
     @Test
     public void skilloLogoWrongUrl() {
         WebDriver driver = getDriver();
@@ -91,7 +90,7 @@ public class SkilloLogoTests extends TestObject {
         wrongUrl.navigateTo();
         Assert.assertTrue(wrongUrl.isUrlLoaded(), "The HOME URL is not correct!");
         Header header = new Header(driver);
-        String skilloLogoLabel = Header.skilloLogo();
+        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
 
     @Test
@@ -107,7 +106,7 @@ public class SkilloLogoTests extends TestObject {
         Assert.assertTrue(registerPage.isUrlLoaded(), "The Register URL is not correct!");
         registerPage.isTextDisplayed();
         Header header = new Header(driver);
-        String skilloLogoLabel = Header.skilloLogo();
+        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
 
     @Test(dataProvider = "getUsers")
@@ -128,7 +127,6 @@ public class SkilloLogoTests extends TestObject {
         String actualUserName = profilePage.getUsername();
         Assert.assertEquals(actualUserName, name, "The username is incorrect!");
         profilePage.userEditButton();
-        String skilloLogoLabel = Header.skilloLogo();
+        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
-
 }
