@@ -19,6 +19,7 @@ public class Header {
         WebElement skilloLogo = driver.findElement(By.id("homeIcon"));
         return skilloLogo.isDisplayed();
     }
+
     public void clickProfile() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
         WebElement profileLink = wait.until(ExpectedConditions.elementToBeClickable(By.id("nav-link-profile")));
