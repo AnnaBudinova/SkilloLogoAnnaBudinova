@@ -43,9 +43,7 @@ public class SkilloLogoTests extends TestObject {
         loginPage.navigateTo();
         loginPage.login(user, password);
         Header header = new Header(driver);
-
         Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
-
     }
 
     @Test(dataProvider = "getUsers")
