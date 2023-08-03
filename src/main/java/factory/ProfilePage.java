@@ -17,6 +17,8 @@ public class ProfilePage {
     private WebElement username;
     @FindBy(css = ".fas.fa-user-edit")
     private WebElement userEditButton;
+    @FindBy(tagName = "h4")
+    private WebElement editTextWindow;
 
     public ProfilePage(WebDriver driver) {
         this.driver = driver;
@@ -35,5 +37,8 @@ public class ProfilePage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(userEditButton));
         userEditButton.click();
+    }
+    public boolean editTextWindow() {
+        return editTextWindow.isDisplayed();
     }
 }

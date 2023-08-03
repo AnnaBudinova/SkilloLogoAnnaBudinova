@@ -1,6 +1,6 @@
 package annabudinova;
 
-import factory.*;
+import object.*;
 import org.openqa.selenium.By;
 import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
@@ -42,6 +42,10 @@ public class SkilloLogoTests extends TestObject {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.navigateTo();
         loginPage.login(user, password);
+
+        HomePage homePage = new HomePage(driver);
+        Assert.assertTrue(homePage.isUrlLoaded(), "The Home URL is not correct!");
+
         Header header = new Header(driver);
         Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
@@ -53,12 +57,8 @@ public class SkilloLogoTests extends TestObject {
         loginPage.navigateTo();
         loginPage.login(user, password);
 
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isUrlLoaded(), "The Home URL is not correct!");
-
         Header header = new Header(driver);
         header.clickProfile();
-
         ProfilePage profilePage = new ProfilePage(driver);
         Assert.assertTrue(profilePage.isUrlLoaded(), "The Profile URL is not correct!");
         String actualUserName = profilePage.getUsername();
@@ -73,8 +73,10 @@ public class SkilloLogoTests extends TestObject {
         LoginPage loginPage = new LoginPage(driver);
         loginPage.navigateTo();
         loginPage.login(user, password);
+
         HomePage homePage = new HomePage(driver);
         Assert.assertTrue(homePage.isUrlLoaded(), "The Home URL is not correct!");
+
         Header header = new Header(driver);
         header.newPostLink();
         NewPostPage newPostPage = new NewPostPage(driver);
@@ -89,9 +91,9 @@ public class SkilloLogoTests extends TestObject {
         WebDriver driver = getDriver();
         WrongUrl wrongUrl = new WrongUrl(driver);
         wrongUrl.navigateTo();
-        Assert.assertTrue(wrongUrl.isUrlLoaded(), "The HOME URL is not correct!");
-        Header header = new Header(driver);
+        Assert.assertTrue(wrongUrl.isUrlLoaded(), "The Wrong URL is not correct!");
 
+        Header header = new Header(driver);
         Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
 
@@ -101,9 +103,11 @@ public class SkilloLogoTests extends TestObject {
         HomePage homePage = new HomePage(driver);
         homePage.navigateTo();
         Assert.assertTrue(homePage.isUrlLoaded(), "The HOME URL is not correct!");
+
         LoginPage loginPage = new LoginPage(driver);
         loginPage.navigateTo();
         loginPage.clickRegister();
+
         RegisterPage registerPage = new RegisterPage(driver);
         Assert.assertTrue(registerPage.isUrlLoaded(), "The Register URL is not correct!");
         registerPage.isTextDisplayed();
@@ -119,9 +123,6 @@ public class SkilloLogoTests extends TestObject {
         loginPage.navigateTo();
         loginPage.login(user, password);
 
-        HomePage homePage = new HomePage(driver);
-        Assert.assertTrue(homePage.isUrlLoaded(), "The Home URL is not correct!");
-
         Header header = new Header(driver);
         header.clickProfile();
 
@@ -129,8 +130,9 @@ public class SkilloLogoTests extends TestObject {
         Assert.assertTrue(profilePage.isUrlLoaded(), "The Profile URL is not correct!");
         String actualUserName = profilePage.getUsername();
         Assert.assertEquals(actualUserName, name, "The username is incorrect!");
-        profilePage.userEditButton();
 
+        profilePage.userEditButton();
+        Assert.assertTrue(profilePage.editTextWindow(), "The modal profile page is not displayed!");
         Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
     }
 }
