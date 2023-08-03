@@ -26,6 +26,7 @@ public class Header {
         profileLink.click();
     }
     public void newPostLink() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         WebElement newPostLink = driver.findElement(By.id("nav-link-new-post"));
         newPostLink.click();
     }

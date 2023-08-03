@@ -34,6 +34,7 @@ public class Header {
         profileLink.click();
     }
     public void newPostLink() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
         newPostLink.click();
     }
 }

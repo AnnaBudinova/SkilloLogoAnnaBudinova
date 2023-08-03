@@ -30,4 +30,8 @@ public class ProfilePage {
         WebElement userEditButton = wait.until(ExpectedConditions.elementToBeClickable(By.cssSelector(".fas.fa-user-edit")));
         userEditButton.click();
     }
+    public boolean editTextWindow() {
+        WebElement editTextWindow = driver.findElement(By.tagName("h4"));
+        return editTextWindow.isDisplayed();
+    }
 }
