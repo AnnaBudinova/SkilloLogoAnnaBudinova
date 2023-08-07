@@ -13,7 +13,7 @@ import java.time.Duration;
 public class Header {
     private final WebDriver driver;
     @FindBy(id = "homeIcon")
-    private WebElement skilloLogo;
+    private WebElement isSkilloLogoDisplayed;
     @FindBy(id = "nav-link-profile")
     private WebElement profileLink;
     @FindBy(id = "nav-link-new-post")
@@ -24,8 +24,8 @@ public class Header {
         PageFactory.initElements(driver, this);
     }
 
-    public boolean skilloLogo() {
-        return skilloLogo.isDisplayed();
+    public boolean isSkilloLogoDisplayed() {
+        return isSkilloLogoDisplayed.isDisplayed();
     }
 
     public void clickProfile() {

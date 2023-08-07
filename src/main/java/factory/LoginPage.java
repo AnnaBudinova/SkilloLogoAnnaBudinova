@@ -21,6 +21,9 @@ public class LoginPage {
     private WebElement usernameField;
     @FindBy(xpath = "//*[contains(text(),'Register')]")
     private WebElement registerButton;
+    @FindBy(xpath = "//*[text()='Sign in']")
+    private WebElement isTextDisplayed;
+
     public LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
@@ -48,5 +51,12 @@ public class LoginPage {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         wait.until(ExpectedConditions.elementToBeClickable(registerButton));
         registerButton.click();
+    }
+    public boolean isUrlLoaded() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        return wait.until(ExpectedConditions.urlToBe(object.LoginPage.PAGE_URL));
+    }
+    public String isTextDisplayed() {
+        return isTextDisplayed.getText();
     }
 }
