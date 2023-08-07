@@ -15,9 +15,9 @@ public class Header {
         this.driver = driver;
     }
 
-    public boolean skilloLogo() {
-        WebElement skilloLogo = driver.findElement(By.id("homeIcon"));
-        return skilloLogo.isDisplayed();
+    public boolean isSkilloLogoDisplayed() {
+        WebElement isSkilloLogoDisplayed = driver.findElement(By.id("homeIcon"));
+        return isSkilloLogoDisplayed.isDisplayed();
     }
 
     public void clickProfile() {

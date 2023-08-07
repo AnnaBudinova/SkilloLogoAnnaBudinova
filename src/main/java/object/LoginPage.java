@@ -41,9 +41,20 @@ public class LoginPage {
         WebElement userNameField = driver.findElement(By.id("defaultLoginFormUsername"));
         userNameField.sendKeys(username);
     }
+
     public void clickRegister() {
         WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(20));
         WebElement registerButton = wait.until(ExpectedConditions.elementToBeClickable(By.xpath("//*[contains(text(),'Register')]")));
         registerButton.click();
+    }
+
+    public boolean isUrlLoaded() {
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        return wait.until(ExpectedConditions.urlToBe(LoginPage.PAGE_URL));
+    }
+
+    public String isTextDisplayed() {
+        WebElement isTextDisplayed = driver.findElement(By.xpath("//*[text()='Sign in']"));
+        return isTextDisplayed.getText();
     }
 }

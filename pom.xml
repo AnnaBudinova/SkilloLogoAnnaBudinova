@@ -28,7 +28,7 @@
                     <version>3.0.0-M7</version>
                     <configuration>
                         <suiteXmlFiles>
-                            <suiteXmlFile>testng-annabudinova-skillologotests.xml</suiteXmlFile>
+                            <suiteXmlFile>testng-skillo_logo-skillologotests.xml</suiteXmlFile>
                         </suiteXmlFiles>
                     </configuration>
                 </plugin>

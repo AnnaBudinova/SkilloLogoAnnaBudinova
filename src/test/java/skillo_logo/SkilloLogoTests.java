@@ -1,11 +1,7 @@
-package annabudinova;
+package skillo_logo;
 
 import object.*;
-import org.openqa.selenium.By;
-import org.openqa.selenium.Dimension;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
-import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -22,22 +18,34 @@ public class SkilloLogoTests extends TestObject {
     @DataProvider(name = "getUsers")
     public Object[][] getUsers() {
         return new Object[][]{
-                {"anbori@abv.bg", "_Passw0rd", "annabudinova"}, //login with username
+                {"anbori@abv.bg", "_Passw0rd", "annabudinova"},
         };
     }
 
     @Test
-    public void skilloLogoGuestTest() {
+    public void testLogoHomePageGuestUser() {
         WebDriver driver = getDriver();
         HomePage homePage = new HomePage(driver);
         homePage.navigateTo();
         Assert.assertTrue(homePage.isUrlLoaded(), "The HOME URL is not correct!");
         Header header = new Header(driver);
-        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
+        Assert.assertTrue(header.isSkilloLogoDisplayed(),"The logo is not displayed");
+    }
+
+    @Test
+    public void testLogoLoginPage() {
+        WebDriver driver = getDriver();
+        LoginPage loginPage = new LoginPage(driver);
+        loginPage.navigateTo();
+        Assert.assertTrue(loginPage.isUrlLoaded(), "The Login URL is not correct!");
+        String isTextDisplayed = loginPage.isTextDisplayed();
+        Assert.assertEquals(isTextDisplayed, "Sign in");
+        Header header = new Header(driver);
+        Assert.assertTrue(header.isSkilloLogoDisplayed(),"The logo is not displayed");
     }
 
     @Test(dataProvider = "loginUser")
-    public void skilloLogoRegisterUserHome(String user, String password) {
+    public void testLogoHomePageRegisterUser(String user, String password) {
         WebDriver driver = getDriver();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.navigateTo();
@@ -47,11 +55,11 @@ public class SkilloLogoTests extends TestObject {
         Assert.assertTrue(homePage.isUrlLoaded(), "The Home URL is not correct!");
 
         Header header = new Header(driver);
-        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
+        Assert.assertTrue(header.isSkilloLogoDisplayed(),"The logo is not displayed");
     }
 
     @Test(dataProvider = "getUsers")
-    public void skilloLogoRegisterUserProfile(String user, String password, String name) {
+    public void testLogoProfilePageRegisterUser(String user, String password, String name) {
         WebDriver driver = getDriver();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.navigateTo();
@@ -64,11 +72,11 @@ public class SkilloLogoTests extends TestObject {
         String actualUserName = profilePage.getUsername();
         Assert.assertEquals(actualUserName, name, "The username is incorrect!");
 
-        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
+        Assert.assertTrue(header.isSkilloLogoDisplayed(),"The logo is not displayed");
     }
 
     @Test(dataProvider = "loginUser")
-    public void skilloLogoRegisterUserPostLink(String user, String password) {
+    public void testLogoPostPageRegisterUser(String user, String password) {
         WebDriver driver = getDriver();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.navigateTo();
@@ -79,26 +87,26 @@ public class SkilloLogoTests extends TestObject {
 
         Header header = new Header(driver);
         header.newPostLink();
-        NewPostPage newPostPage = new NewPostPage(driver);
-        Assert.assertTrue(newPostPage.isUrlLoaded(), "The Profile URL is not correct!");
-        String isTextDisplayed = newPostPage.isTextDisplayed();
+        PostPage postPage = new PostPage(driver);
+        Assert.assertTrue(postPage.isUrlLoaded(), "The Profile URL is not correct!");
+        String isTextDisplayed = postPage.isTextDisplayed();
         Assert.assertEquals(isTextDisplayed, "Post a picture to share with your awesome followers");
 
-        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
+        Assert.assertTrue(header.isSkilloLogoDisplayed(),"The logo is not displayed");
     }
     @Test
-    public void skilloLogoWrongUrl() {
+    public void testLogoNotFoundPage() {
         WebDriver driver = getDriver();
-        WrongUrl wrongUrl = new WrongUrl(driver);
-        wrongUrl.navigateTo();
-        Assert.assertTrue(wrongUrl.isUrlLoaded(), "The Wrong URL is not correct!");
+        NotFoundPage notFoundPage = new NotFoundPage(driver);
+        notFoundPage.navigateTo();
+        Assert.assertTrue(notFoundPage.isUrlLoaded(), "The Wrong URL is not correct!");
 
         Header header = new Header(driver);
-        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
+        Assert.assertTrue(header.isSkilloLogoDisplayed(),"The logo is not displayed");
     }
 
     @Test
-    public void skilloLogoRegisterPage() {
+    public void testLogoRegisterPage() {
         WebDriver driver = getDriver();
         HomePage homePage = new HomePage(driver);
         homePage.navigateTo();
@@ -113,11 +121,11 @@ public class SkilloLogoTests extends TestObject {
         registerPage.isTextDisplayed();
         Header header = new Header(driver);
 
-        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
+        Assert.assertTrue(header.isSkilloLogoDisplayed(),"The logo is not displayed");
     }
 
     @Test(dataProvider = "getUsers")
-    public void skilloLogoEditRegisterUser(String user, String password, String name) {
+    public void testLogoEditRegisterUser(String user, String password, String name) {
         WebDriver driver = getDriver();
         LoginPage loginPage = new LoginPage(driver);
         loginPage.navigateTo();
@@ -133,6 +141,6 @@ public class SkilloLogoTests extends TestObject {
 
         profilePage.userEditButton();
         Assert.assertTrue(profilePage.editTextWindow(), "The modal profile page is not displayed!");
-        Assert.assertTrue(header.skilloLogo(),"The logo is not displayed");
+        Assert.assertTrue(header.isSkilloLogoDisplayed(),"The logo is not displayed");
     }
 }
